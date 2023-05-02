@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Invasion{
+
   public static void main(String[] args){
     // Read the file and store data in a list
     ArrayList<String> plantList = new ArrayList<String>();
@@ -18,7 +19,14 @@ public class Invasion{
     
   }
 
-  // This method processes each line of plants and outputs the dominant plant
+  /**
+   * Processes each line of plant data and outputs the dominant plant.
+   * 
+   * @param array      The ArrayList containing each line of plant data.
+   * @param numberLine The number of lines of plant data to process.
+   */
+  //@ requires array != null && numberLine > 0 && numberLine <= array.size();
+  //@ ensures true;
   public static void insertProc(ArrayList<String> array, int numberLine) {  
     int numberplant = 0;
     int listPlant = 1;
@@ -34,7 +42,22 @@ public class Invasion{
       numberplant = numberplant + 2;
     }
   }
-  // This method finds the dominant plant in a line of plants
+
+
+  /**
+   * Finds the dominant plant in a line of plant data.
+   * 
+   * @param array      The ArrayList containing the line of plant data.
+   * @param i          The current index of the plant being processed.
+   * @param j          The total number of plants in the line.
+   * @param numberplant The index of the first line of plant data.
+   * @param listPlant  The index of the current line of plant data.
+   * @param test       The number of times the current plant color appears in the line.
+   * @param nb         The index of the dominant plant in the line.
+   * @param bool       A boolean indicating if a dominant plant has been found.
+   */
+  //@ requires array != null && i > 0 && i <= (j/2 + 1) && numberplant >= 0 && listPlant >= 0 && test >= 0 && nb >= 0;
+  //@ ensures true;
   public static void divineAndconquer(ArrayList<String> array, int i, int j, int numberplant, int listPlant, int test, int nb, boolean bool){
     // Get the number of plants in the line
     j = Integer.parseInt(array.get(numberplant));
@@ -73,7 +96,12 @@ public class Invasion{
     }
 
   }
-  // This method reads the input file and stores each line in an ArrayList
+  /**
+   * Reads the input file and stores each line in an ArrayList.
+   * @return The ArrayList containing each line of plant data from the input file.
+   */
+  //@ requires champ.txt exists;
+  //@ ensures \result != null;
   public static ArrayList<String> readFile() {
       try {
         File myPlantFile = new File("champs.txt");
